@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\GeneralSettingResource\Pages;
-use App\Models\GeneralSetting;
+use App\Models\Generalsetting;
 use Filament\Forms;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
@@ -13,11 +13,13 @@ use Filament\Tables\Table;
 
 class GeneralSettingResource extends Resource
 {
-    protected static ?string $model = GeneralSetting::class;
+    protected static ?string $model = Generalsetting::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
 
     protected static ?string $navigationGroup = 'Pengaturan Website';
+
+    protected static ?string $pluralModelLabel = 'Pengaturan Website';
 
     // Menonaktifkan tombol "New General Setting"
     public static function canCreate(): bool
