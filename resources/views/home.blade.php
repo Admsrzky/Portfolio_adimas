@@ -154,10 +154,10 @@
                 </div>
             </div>
 
-            <div class="relative flex justify-center items-center h-[500px] md:h-[600px] animate-fade-in-up" style="animation-delay: 0.3s;">
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-200 to-pink-200 rounded-bl-[8rem] rounded-tr-[8rem] rounded-tl-[2rem] rounded-br-[2rem] shadow-xl blur-2xl transform"></div>
-                <div class="relative bg-white rounded-bl-[8rem] rounded-tr-[8rem] rounded-tl-[2rem] rounded-br-[2rem] p-6 shadow-2xl z-10">
-                    <img src="{{ Storage::url($settings->hero_image) }}" alt="{{ $settings->hero_title ?? 'Foto Profil' }}" class="w-64 h-auto md:w-80 rounded-bl-[7.5rem] rounded-tr-[7.5rem] rounded-tl-[1.5rem] rounded-br-[1.5rem] object-cover">
+            <div class="relative md:flex justify-center items-center h-[500px] md:h-[600px] animate-fade-in-up hidden" style="animation-delay: 0.3s;">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-200 to-pink-200 rounded-bl-[8rem] rounded-tr-[8rem] rounded-tl-[2rem] rounded-br-[2rem] shadow-xl blur-2xl transform hidden md:block"></div>
+                <div class="md:relative md:bg-white md:rounded-bl-[8rem] md:rounded-tr-[8rem] md:rounded-tl-[2rem] md:rounded-br-[2rem] md:p-6 md:shadow-2xl md:z-10 hidden md:block">
+                    <img src="{{ Storage::url($settings->hero_image) }}" alt="{{ $settings->hero_title ?? 'Foto Profil' }}" class="w-64 h-auto md:w-80 md:rounded-bl-[7.5rem] md:rounded-tr-[7.5rem] md:rounded-tl-[1.5rem] md:rounded-br-[1.5rem] md:object-cover">
                 </div>
             </div>
         </div>
