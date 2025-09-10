@@ -58,7 +58,8 @@ class ProjectResource extends Resource
                 FileUpload::make('image')
                     ->image()
                     ->directory('project-images') // Simpan gambar di folder 'storage/app/public/project-images'
-                    ->nullable(),
+                    ->required()
+                    ->columnSpanFull(),
 
                 // Toggle untuk status publikasi
                 Toggle::make('is_published')
