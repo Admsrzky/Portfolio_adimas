@@ -1,0 +1,65 @@
+ body {
+        font-family: 'Poppins', sans-serif;
+      }
+      /* Custom color untuk tema */
+      :root {
+        --primary-purple: #8B5CF6;
+      }
+      .bg-primary-purple {
+        background-color: var(--primary-purple);
+      }
+      .text-primary-purple {
+        color: var(--primary-purple);
+      }
+
+      @keyframes slide-right {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+      }
+      .animate-slide-right {
+          animation: slide-right 12s linear infinite;
+      }
+      .animate-wave {
+        animation: wave-hand 1s ease-in-out;
+        transform-origin: 70% 70%;
+        display: inline-block;
+    }
+
+    @keyframes wave-hand {
+        0% { transform: rotate(0.0deg) }
+        10% { transform: rotate(14.0deg) }
+        20% { transform: rotate(-8.0deg) }
+        30% { transform: rotate(14.0deg) }
+        40% { transform: rotate(-4.0deg) }
+        50% { transform: rotate(10.0deg) }
+        60% { transform: rotate(0.0deg) }
+        100% { transform: rotate(0.0deg) }
+    }
+
+    @keyframes fade-in-up {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Kelas utilitas untuk menerapkan animasi */
+    .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out forwards;
+    }
+    @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+}
+.animate-blink {
+    animation: blink 0.8s step-end infinite;
+}

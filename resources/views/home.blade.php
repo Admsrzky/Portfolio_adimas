@@ -3,82 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adimas | Portofolio</title>
+    <title>Adimas Rizki Purwanto | Web Developer Portfolio</title>
+    <meta name="description" content="Portofolio Adimas Rizki Purwanto, seorang Web Developer berpengalaman. Lihat studi kasus, proyek, dan proses kerja saya dalam menciptakan pengalaman digital yang intuitif dan menarik.">
+    <meta name="keywords" content="Adimas Rizki Purwanto, portofolio, web developer, jasa web, desain antarmuka, front-end developer, studi kasus, proyek, Indonesia">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-    <style>
-      body {
-        font-family: 'Poppins', sans-serif;
-      }
-      /* Custom color untuk tema */
-      :root {
-        --primary-purple: #8B5CF6;
-      }
-      .bg-primary-purple {
-        background-color: var(--primary-purple);
-      }
-      .text-primary-purple {
-        color: var(--primary-purple);
-      }
-
-      @keyframes slide-right {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(-100%);
-        }
-      }
-      .animate-slide-right {
-          animation: slide-right 12s linear infinite;
-      }
-      .animate-wave {
-        animation: wave-hand 1s ease-in-out;
-        transform-origin: 70% 70%;
-        display: inline-block;
-    }
-
-    @keyframes wave-hand {
-        0% { transform: rotate(0.0deg) }
-        10% { transform: rotate(14.0deg) }
-        20% { transform: rotate(-8.0deg) }
-        30% { transform: rotate(14.0deg) }
-        40% { transform: rotate(-4.0deg) }
-        50% { transform: rotate(10.0deg) }
-        60% { transform: rotate(0.0deg) }
-        100% { transform: rotate(0.0deg) }
-    }
-
-    @keyframes fade-in-up {
-        0% {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Kelas utilitas untuk menerapkan animasi */
-    .animate-fade-in-up {
-        animation: fade-in-up 0.8s ease-out forwards;
-    }
-    @keyframes blink {
-    50% {
-      opacity: 0;
-    }
-}
-.animate-blink {
-    animation: blink 0.8s step-end infinite;
-}
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 </head>
-<!-- Added padding to the bottom on mobile to prevent content from being hidden by the new nav bar -->
 <body class="bg-gray-50 text-gray-800 pb-20 md:pb-0">
 
     <nav class="bg-white sticky top-0 z-50 shadow-md">
@@ -97,17 +31,16 @@
                 <a href="#contact" class="bg-primary-purple text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">Contact</a>
             </div>
 
-            <!-- Mobile menu button removed as it's replaced by the bottom navigation -->
-        </div>
+            </div>
     </nav>
 
     <section
         x-data="{ isWaving: false }"
         id="home"
-        class="relative bg-gray-50 py-16 md:py-24 overflow-hidden">
+        class="relative bg-gray-50 py-12 md:py-20 overflow-hidden">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
             <div x-data="{
-                fullText: @js($settings->hero_title ?? 'Adimas Rizki Purwanto'),
+                fullText: @js($settings->hero_title ?? 'Adimas Rizki Purwanto | Web Developer'),
                 typedText: ''
             }"
             x-init="
@@ -131,7 +64,7 @@
                 </p>
 
                 {{-- TOMBOL YANG DIMODIFIKASI --}}
-                <a  href="#contact"
+                <a  href="#contact"
                     @click.prevent="isWaving = true; setTimeout(() => isWaving = false, 1000)"
                     class="bg-primary-purple text-white font-semibold py-3 px-8 rounded-lg w-fit hover:bg-purple-700 transition duration-300 shadow-md flex items-center space-x-2">
                     <span>Say Hello</span>
@@ -157,7 +90,7 @@
             <div class="relative md:flex justify-center items-center h-[500px] md:h-[600px] animate-fade-in-up hidden" style="animation-delay: 0.3s;">
                 <div class="absolute inset-0 bg-gradient-to-br from-blue-200 to-pink-200 rounded-bl-[8rem] rounded-tr-[8rem] rounded-tl-[2rem] rounded-br-[2rem] shadow-xl blur-2xl transform hidden md:block"></div>
                 <div class="md:relative md:bg-white md:rounded-bl-[8rem] md:rounded-tr-[8rem] md:rounded-tl-[2rem] md:rounded-br-[2rem] md:p-6 md:shadow-2xl md:z-10 hidden md:block">
-                    <img src="{{ Storage::url($settings->hero_image) }}" alt="{{ $settings->hero_title ?? 'Foto Profil' }}" class="w-64 h-auto md:w-80 md:rounded-bl-[7.5rem] md:rounded-tr-[7.5rem] md:rounded-tl-[1.5rem] md:rounded-br-[1.5rem] md:object-cover">
+                    <img src="{{ Storage::url($settings->hero_image) }}" alt="Foto profil Adimas Rizki Purwanto" class="w-64 h-auto md:w-80 md:rounded-bl-[7.5rem] md:rounded-tr-[7.5rem] md:rounded-tl-[1.5rem] md:rounded-br-[1.5rem] md:object-cover">
                 </div>
             </div>
         </div>
@@ -165,20 +98,19 @@
 
     <section id="about" class="py-16 md:py-24 bg-gray-50">
         <div class="container mx-auto px-4 relative bg-white shadow-2xl rounded-3xl p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-12">
-            <div class="relative w-full lg:w-1/2 flex justify-center lg:justify-start -mt-24 lg:-ml-24 z-10">
+            <div class="relative w-full lg:w-1/2 flex justify-center lg:justify-start -mt-24 lg:-ml-24 z-10 animate-fade-in-up" style="animation-delay: 0.4s;">
                 <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-300 p-4 md:p-8 transform hidden lg:block">
-                    <img src="{{ Storage::url($settings->about_image) }}" alt="Adimas Rizki Purwanto" class="rounded-[3.5rem] object-cover h-80 md:h-96 w-auto">
+                    <img src="{{ Storage::url($settings->about_image) }}" alt="Adimas Rizki Purwanto sedang bekerja" class="rounded-[3.5rem] object-cover h-80 md:h-96 w-auto">
                 </div>
                 <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-300 p-4 md:p-8 block lg:hidden">
-                    <img src="{{ Storage::url($settings->about_image) }}" alt="Adimas Rizki Purwanto" class="rounded-[3.5rem] object-cover h-64 w-auto mx-auto">
+                    <img src="{{ Storage::url($settings->about_image) }}" alt="Adimas Rizki Purwanto sedang bekerja" class="rounded-[3.5rem] object-cover h-64 w-auto mx-auto">
                 </div>
 
                 @if($socialLinks->isNotEmpty())
                 <div class="absolute px-10 shadow-teal-200 bottom-[-2rem] md:bottom-[-4.2rem] left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0 lg:ml-8 mt-4 flex justify-center space-x-4 bg-white p-4 rounded-3xl shadow-lg z-20">
 
                     @foreach($socialLinks as $link)
-                    <a href="{{ $link->url }}" target="_blank" title="{{ $link->name }}" class="md:w-6 md:h-6 w-5 h-5 text-gray-500 hover:text-primary-purple transition">
-                        {{-- Mengubah dari {!! $link->icon_svg !!} menjadi gambar --}}
+                    <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer" title="{{ $link->name }}" class="md:w-6 md:h-6 w-5 h-5 text-gray-500 hover:text-primary-purple transition">
                         <img src="{{ Storage::url($link->icon_svg) }}" alt="{{ $link->name }} Icon" class="w-6 h-6 object-contain">
                     </a>
                     @endforeach
@@ -187,7 +119,7 @@
                 @endif
             </div>
 
-            <div class="flex flex-col space-y-4 w-full lg:w-1/2 lg:pl-16">
+            <div class="flex flex-col space-y-4 w-full lg:w-1/2 lg:pl-16 animate-fade-in-up" style="animation-delay: 0.2s;">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">{{ $settings->about_title ?? 'Tentang Saya' }}</h2>
                 <p class="text-gray-600 leading-relaxed">
                     {!! $settings->about_description_1 !!}
@@ -208,9 +140,9 @@
             <div>
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Work Process</h2>
                 <p class="text-gray-600 leading-relaxed mb-6">
-                    Driven by design and supported by code, I create digital interfaces that feel intuitive and work seamlessly. Every layout, animation, and component is created with a purpose—combining usability with visual clarity.                </p>
+                    Driven by design and supported by code, I create digital interfaces that feel intuitive and work seamlessly. Every layout, animation, and component is created with a purpose—combining usability with visual clarity.                  </p>
                 <p class="text-gray-600 leading-relaxed">
-                    I combine clean design with efficient code to build engaging and user-friendly web experiences that stand out.                </p>
+                    I combine clean design with efficient code to build engaging and user-friendly web experiences that stand out.                  </p>
             </div>
 
             {{-- Pastikan ada data proses kerja sebelum menampilkannya --}}
@@ -222,7 +154,7 @@
                 <div class="bg-white p-6 rounded-3xl shadow-lg border border-gray-200 transform hover:-translate-y-2 transition-transform duration-300">
                     <div class="bg-primary-purple/10 text-primary-purple w-12 h-12 flex items-center justify-center rounded-xl mb-4">
                         {{-- Ganti SVG statis dengan gambar dinamis --}}
-                        <img src="{{ Storage::url($process->icon_svg) }}" alt="{{ $process->title }}" class="w-6 h-6 object-contain">
+                        <img src="{{ Storage::url($process->icon_svg) }}" alt="Ikon {{ $process->title }}" class="w-6 h-6 object-contain">
                     </div>
                     {{-- Tampilkan nomor langkah dan judul --}}
                     <h3 class="text-xl font-semibold mb-2">{{ $process->step_number }}. {{ $process->title }}</h3>
@@ -245,7 +177,7 @@
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900">Portfolio</h2>
                 <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
-                    Berikut adalah beberapa karya terbaru saya, menampilkan keahlian dalam menciptakan antarmuka yang berpusat pada pengguna dan menarik secara visual.
+                    Here is some of my latest work, showcasing my expertise in creating user-centered and visually appealing interfaces.
                 </p>
             </div>
 
@@ -255,7 +187,7 @@
                 @foreach($projects as $project)
                 <div class="bg-white p-4 rounded-3xl shadow-md overflow-hidden flex flex-col">
                     @if($project->image)
-                    <img src="{{ Storage::url($project->image) }}" alt="{{ $project->title }}" class="w-full h-64 object-cover rounded-3xl mb-4">
+                    <img src="{{ Storage::url($project->image) }}" alt="Gambar proyek {{ $project->title }}" class="w-full h-64 object-cover rounded-3xl mb-4">
                     @else
                     <div class="w-full h-64 bg-gray-200 rounded-3xl mb-4 flex items-center justify-center">
                         <span class="text-gray-400">No Image</span>
@@ -270,10 +202,11 @@
                         </div>
 
                         {{-- Logika untuk link Case Study --}}
-                        <a  href="{{ $project->case_study_url }}"
+                        <a  href="{{ $project->case_study_url }}"
                             {{-- Jika URL bukan '#', buka di tab baru --}}
                             @if($project->case_study_url != '')
                                 target="_blank"
+                                rel="noopener noreferrer"
                             {{-- Jika URL adalah '#', picu modal Alpine.js --}}
                             @else
                                 @click.prevent="modalOpen = true; modalMessage = 'Studi kasus untuk proyek ini belum dipublikasikan.'"
@@ -325,33 +258,25 @@
             <div class="relative w-full overflow-hidden whitespace-nowrap py-4">
                 <div class="inline-block animate-slide-right group">
                     <div class="inline-flex items-center space-x-16 px-4 group-hover:pause">
-                        <img src="{{ asset('assets/images/logo-almira.svg') }}" alt="Logo Almira" class="w-24 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-reproject.png') }}" alt="Logo Reproject" class="w-32 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-faaroti.png') }}" alt="Logo Faaroti" class="w-24 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-man1cilegon.png') }}" alt="Logo MAN 1 Cilegon" class="w-12 px-2 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-kasa.jpg') }}" alt="Logo Kasa" class="w-12 h-auto opacity-50 px-2 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-almira.svg') }}" alt="Logo perusahaan Almira" class="w-24 h-auto opacity-50 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-reproject.png') }}" alt="Logo perusahaan Reproject" class="w-32 h-auto opacity-50 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-faaroti.png') }}" alt="Logo perusahaan Faaroti" class="w-24 h-auto opacity-50 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-man1cilegon.png') }}" alt="Logo sekolah MAN 1 Cilegon" class="w-12 px-2 h-auto opacity-50 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-kasa.jpg') }}" alt="Logo perusahaan Kasa" class="w-12 h-auto opacity-50 px-2 hover:opacity-100 transition-opacity">
                     </div>
                     <div class="inline-flex items-center space-x-16 px-4 group-hover:pause">
-                        <img src="{{ asset('assets/images/logo-almira.svg') }}" alt="Logo Almira" class="w-32 h-auto pl-8 pr-2 opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-reproject.png') }}" alt="Logo Reproject" class="w-32 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-faaroti.png') }}" alt="Logo Faaroti" class="w-24 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-man1cilegon.png') }}" alt="Logo MAN 1 Cilegon" class="w-12 px-2 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-kasa.jpg') }}" alt="Logo Kasa" class="w-12 h-auto opacity-50 px-2 hover:opacity-100 transition-opacity">
-                    </div>
-
-                    <div class="inline-flex items-center space-x-16 px-4 group-hover:pause">
-                        <img src="{{ asset('assets/images/logo-almira.svg') }}" alt="Logo Almira" class="w-32 h-auto pl-8 pr-2 opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-reproject.png') }}" alt="Logo Reproject" class="w-32 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-faaroti.png') }}" alt="Logo Faaroti" class="w-24 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-man1cilegon.png') }}" alt="Logo MAN 1 Cilegon" class="w-12 px-2 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-kasa.jpg') }}" alt="Logo Kasa" class="w-12 h-auto opacity-50 px-2 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-almira.svg') }}" alt="Logo perusahaan Almira" class="w-32 h-auto pl-8 pr-2 opacity-50 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-reproject.png') }}" alt="Logo perusahaan Reproject" class="w-32 h-auto opacity-50 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-faaroti.png') }}" alt="Logo perusahaan Faaroti" class="w-24 h-auto opacity-50 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-man1cilegon.png') }}" alt="Logo sekolah MAN 1 Cilegon" class="w-12 px-2 h-auto opacity-50 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-kasa.jpg') }}" alt="Logo perusahaan Kasa" class="w-12 h-auto opacity-50 px-2 hover:opacity-100 transition-opacity">
                     </div>
                     <div class="inline-flex items-center space-x-16 px-4 group-hover:pause">
-                        <img src="{{ asset('assets/images/logo-almira.svg') }}" alt="Logo Almira" class="w-32 h-auto pl-8 pr-2 opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-reproject.png') }}" alt="Logo Reproject" class="w-32 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-faaroti.png') }}" alt="Logo Faaroti" class="w-24 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-man1cilegon.png') }}" alt="Logo MAN 1 Cilegon" class="w-12 px-2 h-auto opacity-50 hover:opacity-100 transition-opacity">
-                        <img src="{{ asset('assets/images/logo-kasa.jpg') }}" alt="Logo Kasa" class="w-12 h-auto opacity-50 px-2 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-almira.svg') }}" alt="Logo perusahaan Almira" class="w-32 h-auto pl-8 pr-2 opacity-50 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-reproject.png') }}" alt="Logo perusahaan Reproject" class="w-32 h-auto opacity-50 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-faaroti.png') }}" alt="Logo perusahaan Faaroti" class="w-24 h-auto opacity-50 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-man1cilegon.png') }}" alt="Logo sekolah MAN 1 Cilegon" class="w-12 px-2 h-auto opacity-50 hover:opacity-100 transition-opacity">
+                        <img src="{{ asset('assets/images/logo-kasa.jpg') }}" alt="Logo perusahaan Kasa" class="w-12 h-auto opacity-50 px-2 hover:opacity-100 transition-opacity">
                     </div>
                 </div>
             </div>
@@ -361,6 +286,8 @@
     <section id="contact" class="py-16 md:py-24 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="bg-white shadow-2xl rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center">
+
+                {{-- Bagian Kiri (Info Kontak) - Tidak ada perubahan --}}
                 <div class="md:w-1/2">
                     <h2 class="text-3xl font-bold text-gray-900 mb-4">Let's discuss your Project</h2>
                     <p class="text-gray-600 mb-8">
@@ -383,40 +310,81 @@
                             <div class="bg-primary-purple/10 text-primary-purple p-3 rounded-full">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 2.003h-8c-2.757 0-5 2.243-5 5v14h18v-14c0-2.757-2.243-5-5-5zm-3 18v-4h2v4h-2zm-3 0v-4h2v4h-2zm-1-6c0-.552-.448-1-1-1s-1 .448-1 1v2c0 .552.448 1 1 1s1-.448 1-1v-2zm-5-3c0-2.206 1.794-4 4-4h2c2.206 0 4 1.794 4 4v2c0 2.206-1.794 4-4 4h-2c-2.206 0-4-1.794-4-4v-2z"></path></svg>
                             </div>
-                            <p class="text-gray-700">{{ $settings->contact_phone ?? +62 }}</p>
+                            <p class="text-gray-700">{{ $settings->contact_phone ?? '+62' }}</p>
                         </div>
                     </div>
                     <div class="flex ml-4 space-x-4 mt-8">
-                        {{-- Pastikan ada data social link sebelum menampilkan --}}
                         @if($socialLinks->isNotEmpty())
-
-                            {{-- Lakukan perulangan untuk setiap social link --}}
                             @foreach($socialLinks as $link)
-                            <a href="{{ $link->url }}" target="_blank" title="{{ $link->name }}" class="text-gray-500 hover:text-primary-purple transition">
-                                {{-- Tampilkan ikon sebagai gambar --}}
-                                <img src="{{ Storage::url($link->icon_svg) }}" alt="{{ $link->name }}" class="w-6 h-6 object-contain">
+                            <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer" title="{{ $link->name }}" class="text-gray-500 hover:text-primary-purple transition">
+                                <img src="{{ Storage::url($link->icon_svg) }}" alt="Ikon {{ $link->name }}" class="w-6 h-6 object-contain">
                             </a>
                             @endforeach
-
                         @endif
                     </div>
                 </div>
 
+                {{-- Bagian Kanan (Formulir Kontak) - DIPERBARUI --}}
                 <div class="md:w-1/2">
                     <p class="text-gray-600 mb-6">
                         I’m always open to discussing product design work or partnership opportunities.
                     </p>
-                    <form class="space-y-4">
-                        <div class="flex space-x-4">
-                            <input type="text" placeholder="Name*" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple">
-                            <input type="email" placeholder="Email*" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple">
+
+                    {{-- Menampilkan Pesan Sukses --}}
+                    @if(session('success'))
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                            <span class="block sm:inline">{{ session('success') }}</span>
                         </div>
-                        <div class="flex space-x-4">
-                            <input type="text" placeholder="Location*" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple">
-                            <input type="text" placeholder="Budget*" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple">
+                    @endif
+
+                    {{-- Tag Form yang diperbarui --}}
+                    <form method="POST" action="{{ route('contact.emailstore') }}" class="space-y-4">
+                        @csrf  {{-- Token Keamanan Laravel --}}
+
+                        <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                            <div class="w-full">
+                                <input type="text" name="name" placeholder="Name*" value="{{ old('name') }}" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple @error('name') border-red-500 @enderror">
+                                @error('name')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="w-full">
+                                <input type="email" name="email" placeholder="Email*" value="{{ old('email') }}" class="w-full p-3 border  rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple @error('email') border-red-500 @enderror">
+                                @error('email')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
-                        <input type="text" placeholder="Subject*" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple">
-                        <textarea placeholder="Message*" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple"></textarea>
+
+                        <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                            <div class="w-full">
+                                <input type="text" name="location" placeholder="Location*" value="{{ old('location') }}" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple @error('location') border-red-500 @enderror">
+                                @error('location')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="w-full">
+                                <input type="text" name="budget" placeholder="Budget*" value="{{ old('budget') }}" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple @error('budget') border-red-500 @enderror">
+                                @error('budget')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div>
+                            <input type="text" name="subject" placeholder="Subject*" value="{{ old('subject') }}" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple @error('subject') border-red-500 @enderror">
+                            @error('subject')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <textarea name="message" placeholder="Message*" rows="4" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple @error('message') border-red-500 @enderror">{{ old('message') }}</textarea>
+                            @error('message')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
                         <button type="submit" class="bg-primary-purple text-white font-semibold py-3 px-8 rounded-lg w-full hover:bg-purple-700 transition duration-300 shadow-md">Submit</button>
                     </form>
                 </div>
@@ -443,27 +411,22 @@
         </div>
     </footer>
 
-    <!-- Bottom Floating Navigation (Mobile Only) -->
-    <nav class="md:hidden rounded-3xl fixed bottom-8 left-3 shadow-blue-200 py-1 right-3 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.1)] z-50">
+    <nav class="md:hidden rounded-3xl fixed bottom-8 left-3 shadow-blue-200 py-1 right-3 bg-white shadow-[0_8px_10px_rgba(0,0,0,0.1)] z-50">
         <div class="container mx-auto h-14 flex justify-around items-center">
             <a href="#home" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                <img src="{{ asset('assets/icons/home.png') }}" class="w-6 h-6" alt="" srcset="">
             </a>
 
             <a href="#process" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                <img src="{{ asset('assets/icons/about.png') }}" class="w-6 h-6" alt="" srcset="">
             </a>
 
             <a href="#portfolio" class="flex flex-col items-center justify-center text-primary-purple transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-            </a>
-
-            <a href="#clients" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <img src="{{ asset('assets/icons/portofolio.png') }}" class="w-6 h-6" alt="" srcset="">
             </a>
 
             <a href="#contact" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             </a>
         </div>
     </nav>
