@@ -64,8 +64,8 @@
                     {{ $settings->hero_subtitle ?? 'Saya adalah seorang developer...' }}
                 </p>
 
-                <a  x-data x-intersect:enter.once="$el.classList.add('is-visible')" href="#contact"
-                    @click.prevent="isWaving = true; setTimeout(() => isWaving = false, 1000); document.querySelector('#contact').scrollIntoView()"
+                <a  x-data x-intersect:enter.once="$el.classList.add('is-visible')" href=""
+                    @click.prevent="isWaving = true; setTimeout(() => isWaving = false, 1000); document.querySelector('#').scrollIntoView()"
                     class="scroll-animate delay-300 bg-primary-purple text-white font-semibold py-3 px-8 rounded-lg w-fit hover:bg-purple-700 transition duration-300 shadow-md flex items-center space-x-2">
                     <span>Say Hello</span>
                     <span :class="{ 'animate-wave': isWaving }">👋</span>
