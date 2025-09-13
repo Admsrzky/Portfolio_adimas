@@ -384,7 +384,7 @@
         </div>
     </footer>
 
-    <nav class="md:hidden rounded-3xl fixed bottom-4 left-3 right-3 bg-white/70 backdrop-blur-sm shadow-lg shadow-blue-300 z-50">
+    <nav class="md:hidden rounded-3xl fixed bottom-4 left-3 right-3 bg-white/70 backdrop-blur-sm shadow-lg z-50">
         <div class="container mx-auto h-16 flex justify-around items-center">
             <a href="#home" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors p-2">
                 <img src="{{ asset('assets/icons/home.png') }}" class="w-6 h-6" alt="">
