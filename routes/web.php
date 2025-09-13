@@ -8,4 +8,4 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::get('/projects', [App\Http\Controllers\HomeController::class, 'Allportofolio'])->name('projects.index');
 
-Route::post('/contact', [HomeController::class, 'NewEmailStore'])->name('contact.emailstore');
+Route::post('/contact', [HomeController::class, 'NewEmailStore'])->name('contact.emailstore')->middleware('throttle:3,1440');
