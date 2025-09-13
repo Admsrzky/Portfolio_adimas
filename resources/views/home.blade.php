@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 </head>
@@ -30,8 +33,7 @@
                 <a href="#clients" class="text-gray-600 hover:text-primary-purple transition">Client</a>
                 <a href="#contact" class="bg-primary-purple text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">Contact</a>
             </div>
-
-            </div>
+        </div>
     </nav>
 
     <section
@@ -52,26 +54,24 @@
                     } else {
                         clearInterval(typingInterval);
                     }
-                }, 100); // 100ms = kecepatan mengetik
+                }, 100);
             " class="flex flex-col space-y-4">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">Hello, I'm <br>
                     <span x-text="typedText"></span>
-                    {{-- Kursor berkedip --}}
                     <span class="animate-blink text-gray-500">|</span>
                 </h1>
-                <p class="text-lg text-gray-600 max-w-lg animate-fade-in-up" style="animation-delay: 0.2s;">
+                <p x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate delay-200 text-lg text-gray-600 max-w-lg">
                     {{ $settings->hero_subtitle ?? 'Saya adalah seorang developer...' }}
                 </p>
 
-                {{-- TOMBOL YANG DIMODIFIKASI --}}
-                <a  href="#contact"
-                    @click.prevent="isWaving = true; setTimeout(() => isWaving = false, 1000)"
-                    class="bg-primary-purple text-white font-semibold py-3 px-8 rounded-lg w-fit hover:bg-purple-700 transition duration-300 shadow-md flex items-center space-x-2">
+                <a  x-data x-intersect:enter.once="$el.classList.add('is-visible')" href="#contact"
+                    @click.prevent="isWaving = true; setTimeout(() => isWaving = false, 1000); document.querySelector('#contact').scrollIntoView()"
+                    class="scroll-animate delay-300 bg-primary-purple text-white font-semibold py-3 px-8 rounded-lg w-fit hover:bg-purple-700 transition duration-300 shadow-md flex items-center space-x-2">
                     <span>Say Hello</span>
                     <span :class="{ 'animate-wave': isWaving }">👋</span>
                 </a>
 
-                <div class="flex flex-wrap justify-start gap-4 mt-8 pt-4 border-t border-gray-200 animate-fade-in-up" style="animation-delay: 0.6s;">
+                <div x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate delay-400 flex flex-wrap justify-start gap-4 mt-8 pt-4 border-t border-gray-200">
                     <div class="text-left p-4 bg-white rounded-lg shadow-sm">
                         <p class="text-2xl font-bold text-primary-purple">{{ $settings->years_experience ?? 0 }} Y.</p>
                         <p class="text-sm text-gray-600">Experience</p>
@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <div class="relative md:flex justify-center items-center h-[500px] md:h-[600px] animate-fade-in-up hidden" style="animation-delay: 0.3s;">
+            <div x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate delay-300 relative md:flex justify-center items-center h-[500px] md:h-[600px] hidden">
                 <div class="absolute inset-0 bg-gradient-to-br from-blue-200 to-pink-200 rounded-bl-[8rem] rounded-tr-[8rem] rounded-tl-[2rem] rounded-br-[2rem] shadow-xl blur-2xl transform hidden md:block"></div>
                 <div class="md:relative md:bg-white md:rounded-bl-[8rem] md:rounded-tr-[8rem] md:rounded-tl-[2rem] md:rounded-br-[2rem] md:p-6 md:shadow-2xl md:z-10 hidden md:block">
                     <img src="{{ Storage::url($settings->hero_image) }}" alt="Foto profil Adimas Rizki Purwanto" class="w-64 h-auto md:w-80 md:rounded-bl-[7.5rem] md:rounded-tr-[7.5rem] md:rounded-tl-[1.5rem] md:rounded-br-[1.5rem] md:object-cover">
@@ -98,38 +98,35 @@
 
     <section id="about" class="py-16 md:py-24 bg-gray-50">
         <div class="container mx-auto px-4 relative bg-white shadow-2xl rounded-3xl p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-12">
-            <div class="relative w-full lg:w-1/2 flex justify-center lg:justify-start -mt-24 lg:-ml-24 z-10 animate-fade-in-up" style="animation-delay: 0.4s;">
+            <div x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate relative w-full lg:w-1/2 flex justify-center lg:justify-start -mt-24 lg:-ml-24 z-10">
                 <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-300 p-4 md:p-8 transform hidden lg:block">
                     <img src="{{ Storage::url($settings->about_image) }}" alt="Adimas Rizki Purwanto sedang bekerja" class="rounded-[3.5rem] object-cover h-80 md:h-96 w-auto">
                 </div>
                 <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-300 p-4 md:p-8 block lg:hidden">
                     <img src="{{ Storage::url($settings->about_image) }}" alt="Adimas Rizki Purwanto sedang bekerja" class="rounded-[3.5rem] object-cover h-64 w-auto mx-auto">
                 </div>
-
                 @if($socialLinks->isNotEmpty())
                 <div class="absolute px-10 shadow-teal-200 bottom-[-2rem] md:bottom-[-4.2rem] left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0 lg:ml-8 mt-4 flex justify-center space-x-4 bg-white p-4 rounded-3xl shadow-lg z-20">
-
                     @foreach($socialLinks as $link)
                     <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer" title="{{ $link->name }}" class="md:w-6 md:h-6 w-5 h-5 text-gray-500 hover:text-primary-purple transition">
                         <img src="{{ Storage::url($link->icon_svg) }}" alt="{{ $link->name }} Icon" class="w-6 h-6 object-contain">
                     </a>
                     @endforeach
-
                 </div>
                 @endif
             </div>
 
-            <div class="flex flex-col space-y-4 w-full lg:w-1/2 lg:pl-16 animate-fade-in-up" style="animation-delay: 0.2s;">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">{{ $settings->about_title ?? 'Tentang Saya' }}</h2>
-                <p class="text-gray-600 leading-relaxed">
+            <div class="flex flex-col space-y-4 w-full lg:w-1/2 lg:pl-16">
+                <h2 x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate text-3xl md:text-4xl font-bold text-gray-900 leading-tight">{{ $settings->about_title ?? 'Tentang Saya' }}</h2>
+                <p x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate delay-200 text-gray-600 leading-relaxed">
                     {!! $settings->about_description_1 !!}
                 </p>
-                <p class="text-gray-600 leading-relaxed">
+                <p x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate delay-300 text-gray-600 leading-relaxed">
                     {!! $settings->about_description_2 !!}
                 </p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
+                <div x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate delay-400 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
                     <a href="#portfolio" class="bg-primary-purple text-white font-semibold py-3 px-8 rounded-lg w-fit hover:bg-purple-700 transition duration-300 shadow-md">My Projects</a>
-                    <a href="{{ Storage::url($settings->cv_path) }}" class="bg-white text-gray-800 font-semibold py-3 px-8 rounded-lg w-fit border border-gray-300 hover:bg-gray-100 transition duration-300 shadow-md">Download CV</a>
+                    <a href="{{ Storage::url($settings->cv_path) }}" download class="bg-white text-gray-800 font-semibold py-3 px-8 rounded-lg w-fit border border-gray-300 hover:bg-gray-100 transition duration-300 shadow-md">Download CV</a>
                 </div>
             </div>
         </div>
@@ -138,31 +135,28 @@
     <section id="process" class="py-16 md:py-24 bg-gray-200">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             <div>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Work Process</h2>
-                <p class="text-gray-600 leading-relaxed mb-6">
-                    Driven by design and supported by code, I create digital interfaces that feel intuitive and work seamlessly. Every layout, animation, and component is created with a purpose—combining usability with visual clarity.                  </p>
-                <p class="text-gray-600 leading-relaxed">
-                    I combine clean design with efficient code to build engaging and user-friendly web experiences that stand out.                  </p>
+                <h2 x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate text-3xl md:text-4xl font-bold text-gray-900 mb-4">Work Process</h2>
+                <p x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate delay-200 text-gray-600 leading-relaxed mb-6">
+                    Driven by design and supported by code, I create digital interfaces that feel intuitive and work seamlessly. Every layout, animation, and component is created with a purpose—combining usability with visual clarity.
+                </p>
+                <p x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate delay-300 text-gray-600 leading-relaxed">
+                    I combine clean design with efficient code to build engaging and user-friendly web experiences that stand out.
+                </p>
             </div>
 
-            {{-- Pastikan ada data proses kerja sebelum menampilkannya --}}
             @if($workProcesses->isNotEmpty())
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
-                {{-- Lakukan perulangan untuk setiap proses kerja --}}
-                @foreach($workProcesses as $process)
-                <div class="bg-white p-6 rounded-3xl shadow-lg border border-gray-200 transform hover:-translate-y-2 transition-transform duration-300">
-                    <div class="bg-primary-purple/10 text-primary-purple w-12 h-12 flex items-center justify-center rounded-xl mb-4">
-                        {{-- Ganti SVG statis dengan gambar dinamis --}}
-                        <img src="{{ Storage::url($process->icon_svg) }}" alt="Ikon {{ $process->title }}" class="w-6 h-6 object-contain">
+                @foreach($workProcesses as $index => $process)
+                <div x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate" style="transition-delay: {{ $index * 150 }}ms">
+                    <div class="bg-white p-6 rounded-3xl shadow-lg border border-gray-200 transform hover:-translate-y-2 transition-transform duration-300 h-full">
+                        <div class="bg-primary-purple/10 text-primary-purple w-12 h-12 flex items-center justify-center rounded-xl mb-4">
+                            <img src="{{ Storage::url($process->icon_svg) }}" alt="Ikon {{ $process->title }}" class="w-6 h-6 object-contain">
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">{{ $process->step_number }}. {{ $process->title }}</h3>
+                        <p class="text-gray-600">{{ $process->description }}</p>
                     </div>
-                    {{-- Tampilkan nomor langkah dan judul --}}
-                    <h3 class="text-xl font-semibold mb-2">{{ $process->step_number }}. {{ $process->title }}</h3>
-                    {{-- Tampilkan deskripsi --}}
-                    <p class="text-gray-600">{{ $process->description }}</p>
                 </div>
                 @endforeach
-
             </div>
             @else
             <div class="text-center text-gray-500 col-span-1 sm:col-span-2">
@@ -175,17 +169,16 @@
     <section x-data="{ modalOpen: false, modalMessage: '' }" id="portfolio" class="py-16 md:py-24 bg-gray-100">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900">Portfolio</h2>
-                <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
+                <h2 x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate text-4xl md:text-5xl font-bold text-gray-900">Portfolio</h2>
+                <p x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate delay-200 text-gray-600 mt-2 max-w-2xl mx-auto">
                     Here is some of my latest work, showcasing my expertise in creating user-centered and visually appealing interfaces.
                 </p>
             </div>
 
             @if($projects->isNotEmpty())
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                @foreach($projects as $project)
-                <div class="bg-white p-4 rounded-3xl shadow-md overflow-hidden flex flex-col">
+                @foreach($projects as $index => $project)
+                <div x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate bg-white p-4 rounded-3xl shadow-md overflow-hidden flex flex-col" style="transition-delay: {{ $index * 150 }}ms">
                     @if($project->image)
                     <img src="{{ Storage::url($project->image) }}" alt="Gambar proyek {{ $project->title }}" class="w-full h-64 object-cover rounded-3xl mb-4">
                     @else
@@ -193,21 +186,16 @@
                         <span class="text-gray-400">No Image</span>
                     </div>
                     @endif
-
                     <div class="p-4 flex-grow flex flex-col">
-                        <span class="text-primary-purple text-sm font-medium uppercase">{{ $project->category }}</span>
+                        <span class="text-primary-purple text-sm font-medium uppercase">{{ $project->category?->name ?? 'Uncategorized' }}</span>
                         <h3 class="text-xl font-bold mt-1 mb-2">{{ $project->title }}</h3>
                         <div class="text-gray-600 text-sm flex-grow">
                             {!! $project->description !!}
                         </div>
-
-                        {{-- Logika untuk link Case Study --}}
-                        <a  href="{{ $project->case_study_url }}"
-                            {{-- Jika URL bukan '#', buka di tab baru --}}
-                            @if($project->case_study_url != '')
+                        <a  href="{{ $project->case_study_url ?: '#' }}"
+                            @if($project->case_study_url && $project->case_study_url != '#')
                                 target="_blank"
                                 rel="noopener noreferrer"
-                            {{-- Jika URL adalah '#', picu modal Alpine.js --}}
                             @else
                                 @click.prevent="modalOpen = true; modalMessage = 'Studi kasus untuk proyek ini belum dipublikasikan.'"
                             @endif
@@ -218,12 +206,10 @@
                     </div>
                 </div>
                 @endforeach
-
             </div>
 
-            {{-- Tombol "See More" --}}
             @if($totalProjects > 3)
-            <div class="text-center mt-12">
+            <div x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate delay-400 text-center mt-12">
                 <a href="{{ route('projects.index') }}" class="bg-primary-purple text-white font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition duration-300">
                     See More
                 </a>
@@ -248,7 +234,7 @@
         </div>
     </section>
 
-    <section id="clients" class="py-16 md:py-24 bg-gray-200">
+<section id="clients" class="py-16 md:py-24 bg-gray-200">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Happy Clients</h2>
             <p class="text-gray-600 mt-2 max-w-2xl mx-auto mb-12">
@@ -285,9 +271,7 @@
 
     <section id="contact" class="py-16 md:py-24 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="bg-white shadow-2xl rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center">
-
-                {{-- Bagian Kiri (Info Kontak) - Tidak ada perubahan --}}
+            <div x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate bg-white shadow-2xl rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center">
                 <div class="md:w-1/2">
                     <h2 class="text-3xl font-bold text-gray-900 mb-4">Let's discuss your Project</h2>
                     <p class="text-gray-600 mb-8">
@@ -324,23 +308,17 @@
                     </div>
                 </div>
 
-                {{-- Bagian Kanan (Formulir Kontak) - DIPERBARUI --}}
                 <div class="md:w-1/2">
                     <p class="text-gray-600 mb-6">
                         I’m always open to discussing product design work or partnership opportunities.
                     </p>
-
-                    {{-- Menampilkan Pesan Sukses --}}
                     @if(session('success'))
                         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
                             <span class="block sm:inline">{{ session('success') }}</span>
                         </div>
                     @endif
-
-                    {{-- Tag Form yang diperbarui --}}
                     <form method="POST" action="{{ route('contact.emailstore') }}" class="space-y-4">
-                        @csrf  {{-- Token Keamanan Laravel --}}
-
+                        @csrf
                         <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
                             <div class="w-full">
                                 <input type="text" name="name" placeholder="Name*" value="{{ old('name') }}" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple @error('name') border-red-500 @enderror">
@@ -349,13 +327,12 @@
                                 @enderror
                             </div>
                             <div class="w-full">
-                                <input type="email" name="email" placeholder="Email*" value="{{ old('email') }}" class="w-full p-3 border  rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple @error('email') border-red-500 @enderror">
+                                <input type="email" name="email" placeholder="Email*" value="{{ old('email') }}" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple @error('email') border-red-500 @enderror">
                                 @error('email')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
-
                         <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
                             <div class="w-full">
                                 <input type="text" name="location" placeholder="Location*" value="{{ old('location') }}" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple @error('location') border-red-500 @enderror">
@@ -370,21 +347,18 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div>
                             <input type="text" name="subject" placeholder="Subject*" value="{{ old('subject') }}" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple @error('subject') border-red-500 @enderror">
                             @error('subject')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-
                         <div>
                             <textarea name="message" placeholder="Message*" rows="4" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple @error('message') border-red-500 @enderror">{{ old('message') }}</textarea>
                             @error('message')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-
                         <button type="submit" class="bg-primary-purple text-white font-semibold py-3 px-8 rounded-lg w-full hover:bg-purple-700 transition duration-300 shadow-md">Submit</button>
                     </form>
                 </div>
@@ -393,7 +367,7 @@
     </section>
 
     <footer class="bg-gray-800 text-gray-300 py-8">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
             <div class="flex items-center space-x-8 mb-4 md:mb-0">
                 <a href="#" class="flex items-center space-x-2">
                     <span class="bg-primary-purple text-white w-8 h-8 flex items-center justify-center font-bold rounded-full">AR</span>
@@ -406,27 +380,23 @@
                     <a href="#contact" class="hover:text-primary-purple transition">Contact</a>
                 </div>
             </div>
-
-            <p class="text-sm">{{ $settings->footer_copyright ?? '-' }}</p>
+            <p class="text-sm">{{ $settings->footer_copyright}}</p>
         </div>
     </footer>
 
-    <nav class="md:hidden rounded-3xl fixed bottom-8 left-3 shadow-blue-200 py-1 right-3 bg-white shadow-[0_8px_10px_rgba(0,0,0,0.1)] z-50">
-        <div class="container mx-auto h-14 flex justify-around items-center">
-            <a href="#home" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors">
-                <img src="{{ asset('assets/icons/home.png') }}" class="w-6 h-6" alt="" srcset="">
+    <nav class="md:hidden rounded-3xl fixed bottom-4 left-3 right-3 bg-white/70 backdrop-blur-sm shadow-lg z-50">
+        <div class="container mx-auto h-16 flex justify-around items-center">
+            <a href="#home" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a2 2 0 002 2h10a2 2 0 002-2V10M9 22v-6a2 2 0 012-2h2a2 2 0 012 2v6"></path></svg>
             </a>
-
-            <a href="#process" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors">
-                <img src="{{ asset('assets/icons/about.png') }}" class="w-6 h-6" alt="" srcset="">
+            <a href="#about" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
             </a>
-
-            <a href="#portfolio" class="flex flex-col items-center justify-center text-primary-purple transition-colors">
-                <img src="{{ asset('assets/icons/portofolio.png') }}" class="w-6 h-6" alt="" srcset="">
+            <a href="#portfolio" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors p-2">
+                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
             </a>
-
-            <a href="#contact" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <a href="#contact" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             </a>
         </div>
     </nav>

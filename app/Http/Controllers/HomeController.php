@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactMessageNotification;
+use App\Models\Client;
 use App\Models\ContactMessage;
 use App\Models\Generalsetting;
 use App\Models\Project;
@@ -23,6 +24,7 @@ class HomeController extends Controller
         $workProcesses = WorkProcess::orderBy('step_number', 'asc')->get();
         $socialLinks = SocialLink::orderBy('order', 'asc')->get();
         $settings = GeneralSetting::first();
+        $clients = Client::first();
 
 
         // Mengirimkan variabel $projects ke view menggunakan compact()
