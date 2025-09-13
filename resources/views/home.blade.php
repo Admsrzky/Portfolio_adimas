@@ -387,13 +387,13 @@
     <nav class="md:hidden rounded-3xl fixed bottom-4 left-3 right-3 bg-white/70 backdrop-blur-sm shadow-lg z-50">
         <div class="container mx-auto h-16 flex justify-around items-center">
             <a href="#home" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors p-2">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a2 2 0 002 2h10a2 2 0 002-2V10M9 22v-6a2 2 0 012-2h2a2 2 0 012 2v6"></path></svg>
+                <img src="{{ asset('assets/icons/home.png')) }}" class="w-6 h-6" alt="">
             </a>
             <a href="#about" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors p-2">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                <img src="{{ asset('assets/icons/about.png')) }}" class="w-6 h-6" alt="">
             </a>
             <a href="#portfolio" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors p-2">
-                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                <img src="{{ asset('assets/icons/portofolio.png')) }}" class="w-6 h-6" alt="">
             </a>
             <a href="#contact" class="flex flex-col items-center justify-center text-gray-500 hover:text-primary-purple transition-colors p-2">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
