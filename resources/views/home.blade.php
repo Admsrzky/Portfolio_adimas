@@ -28,7 +28,7 @@
             <div class="hidden md:flex items-center space-x-6">
                 <a href="#home" class="text-gray-600 hover:text-primary-purple transition">Home</a>
                 <a href="#about" class="text-gray-600 hover:text-primary-purple transition">About</a>
-                <a href="#process" class="text-gray-600 hover:text-primary-purple transition">Process</a>
+                <a href="#skills" class="text-gray-600 hover:text-primary-purple transition">Skills</a>
                 <a href="#portfolio" class="text-gray-600 hover:text-primary-purple transition">Portfolio</a>
                 <a href="#clients" class="text-gray-600 hover:text-primary-purple transition">Client</a>
                 <a href="#contact" class="bg-primary-purple text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">Contact</a>
@@ -132,6 +132,35 @@
         </div>
     </section>
 
+    <section id="skills" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate text-4xl md:text-5xl font-bold text-gray-900">My Tech Stack</h2>
+                <p x-data x-intersect:enter.once="$el.classList.add('is-visible')" class="scroll-animate delay-200 text-gray-600 mt-2 max-w-2xl mx-auto">
+                    Teknologi dan tools yang saya gunakan untuk mengubah ide menjadi produk digital yang nyata.
+                </p>
+            </div>
+
+            {{-- Anda perlu mengirimkan variabel $skills dari controller Anda --}}
+            @if($skills->isNotEmpty())
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                @foreach($skills as $index => $skill)
+                <div x-data x-intersect:enter.once="$el.classList.add('is-visible')"
+                     class="scroll-animate flex flex-col items-center justify-center bg-white p-6 rounded-2xl shadow-md transform hover:-translate-y-2 transition-transform duration-300"
+                     style="transition-delay: {{ $index * 100 }}ms">
+                    <img src="{{ Storage::url($skill->icon) }}" alt="{{ $skill->name }} Logo" class="h-16 w-16 object-contain">
+                    <h3 class="mt-4 font-semibold text-gray-800 text-center">{{ $skill->name }}</h3>
+                </div>
+                @endforeach
+            </div>
+            @else
+            <div class="text-center text-gray-500">
+                <p>Daftar skills belum didefinisikan.</p>
+            </div>
+            @endif
+        </div>
+    </section>
+
     <section id="process" class="py-16 md:py-24 bg-gray-200">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             <div>
@@ -187,7 +216,7 @@
                     </div>
                     @endif
                     <div class="p-4 flex-grow flex flex-col">
-                        <span class="text-primary-purple text-sm font-medium uppercase">{{ $project->category?->name ?? 'Uncategorized' }}</span>
+                        <span class="text-primary-purple text-sm font-medium uppercase">{{ $project->category ?? 'Uncategorized' }}</span>
                         <h3 class="text-xl font-bold mt-1 mb-2">{{ $project->title }}</h3>
                         <div class="text-gray-600 text-sm flex-grow">
                             {!! $project->description !!}

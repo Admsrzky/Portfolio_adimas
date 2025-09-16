@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\ContactMessage;
 use App\Models\Generalsetting;
 use App\Models\Project;
+use App\Models\Skill;
 use App\Models\SocialLink;
 use App\Models\WorkProcess;
 use Illuminate\Http\Request;
@@ -25,10 +26,11 @@ class HomeController extends Controller
         $socialLinks = SocialLink::orderBy('order', 'asc')->get();
         $settings = GeneralSetting::first();
         $clients = Client::first();
+        $skills = Skill::all();
 
 
         // Mengirimkan variabel $projects ke view menggunakan compact()
-        return view('home', compact('projects', 'totalProjects', 'workProcesses', 'socialLinks', 'settings'));
+        return view('home', compact('projects', 'totalProjects', 'workProcesses', 'socialLinks', 'settings', 'skills'));
     }
 
     public function Allportofolio()
